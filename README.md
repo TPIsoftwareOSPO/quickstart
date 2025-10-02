@@ -85,7 +85,7 @@ echo|Completed
 ### Using Docker
 
 ```shell
-docker run --rm -v ./dgrkt.yaml:/app/dgrkt.yaml vulcantpisoft/dgrkt up
+docker run --rm -v ./dgrkt.yaml:/app/dgrkt.yaml tpisoftwareopensource/dgrkt up
 ```
 
 ### Command Line Interface (CLI)
