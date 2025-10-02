@@ -98,7 +98,7 @@ checksum:
 
 release:
   github:
-    owner: TPIsoftwareOSPO
+    owner: TPIsoftwareOpenSource
     name: digiRocket
   name_template: "Release {{ .Tag }}"
 
