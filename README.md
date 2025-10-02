@@ -32,10 +32,7 @@ you'll currently need to manually bypass system security blocks when running the
 - [homebrew installation](https://brew.sh/)
 
 ```shell
-# add brew tap
-brew tap TPIsoftwareOSPO/tap
-# install dgrkt
-brew install --cask dgrkt
+brew install --cask TPIsoftwareOSPO/tap/dgrkt
 
 # macos (as "Important Note!" mention above)
 xattr -dr com.apple.quarantine $(which dgrkt)
