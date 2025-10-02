@@ -1,8 +1,8 @@
-# Task-Compose
+# digiRocket(dgrkt)
 
-`task-compose` is a convenient command-line utility built with Go and Cobra. It's designed to orchestrate and execute a series of commands based on a declarative YAML configuration file, similar to how container orchestrators manage services. This tool simplifies the management of complex multi-command setups, making it ideal for local development environments, testing suites, or task automation.
+`dgrkt` is a convenient command-line utility built with Go and Cobra. It's designed to orchestrate and execute a series of commands based on a declarative YAML configuration file, similar to how container orchestrators manage services. This tool simplifies the management of complex multi-command setups, making it ideal for local development environments, testing suites, or task automation.
 
-With `task-compose`, you define your tasks, their execution parameters, and their dependencies, allowing you to bring up and manage an entire set of related processes with a single command. It includes robust health check capabilities, ensuring that each task is healthy before dependent tasks are started.
+With `dgrkt`, you define your tasks, their execution parameters, and their dependencies, allowing you to bring up and manage an entire set of related processes with a single command. It includes robust health check capabilities, ensuring that each task is healthy before dependent tasks are started.
 
 ### Features
 
@@ -33,12 +33,12 @@ you'll currently need to manually bypass system security blocks when running the
 
 ```shell
 # add brew tap
-brew tap vulcanshen-tpi/tap
-# install task-compose
-brew install --cask task-compose
+brew tap TPIsoftwareOSPO/tap
+# install dgrkt
+brew install --cask dgrkt
 
 # macos (as "Important Note!" mention above)
-xattr -dr com.apple.quarantine $(which task-compose)
+xattr -dr com.apple.quarantine $(which dgrkt)
 ```
 
 #### Scoop (windows)
@@ -47,21 +47,21 @@ xattr -dr com.apple.quarantine $(which task-compose)
 
 ```shell
 # add scoop tap
-scoop bucket add vulcanshen-tpi https://github.com/vulcanshen-tpi/scoop-bucket.git
-# install task-compose
-scoop install task-compose
+scoop bucket add TPIsoftwareOSPO https://github.com/TPIsoftwareOSPO/scoop-bucket.git
+# install dgrkt
+scoop install dgrkt
 ```
 
 ### Portable Executable
 
-Download the compressed file that matches your system from [release](https://github.com/vulcanshen-tpi/task-compose/releases).
-The filename prefix will be `task-compose-portable_`.
+Download the compressed file that matches your system from [release](https://github.com/TPIsoftwareOSPO/digiRocket/releases).
+The filename prefix will be `dgrkt-portable_`.
 
-To run the portable executable, it must be in the same directory with the `task-compose.yaml` file.
+To run the portable executable, it must be in the same directory with the `dgrkt.yaml` file.
 
 ### Basics
 
-`task-compose.yaml`
+`dgrkt.yaml`
 
 ```yaml
 tasks:
@@ -75,12 +75,12 @@ tasks:
 To execute tasks defined in your configuration file:
 
 ```bash
-task-compose up
+dgrkt up
 ```
 
 output:
 ```shell
-task-compose|Using config file: ...(ellipsis)/task-compose.yaml
+dgrkt|Using config file: ...(ellipsis)/dgrkt.yaml
 echo|hello world
 echo|Completed
 ```
@@ -88,17 +88,17 @@ echo|Completed
 ### Using Docker
 
 ```shell
-docker run --rm -v ./task-compose.yaml:/app/task-compose.yaml vulcantpisoft/task-compose up
+docker run --rm -v ./dgrkt.yaml:/app/dgrkt.yaml vulcantpisoft/dgrkt up
 ```
 
 ### Command Line Interface (CLI)
 
-`task-compose` provides a straightforward command-line interface.
+`dgrkt` provides a straightforward command-line interface.
 
 **Usage:**
 
 ```bash
-task-compose [command]
+dgrkt [command]
 ```
 
 **Available Commands:**
@@ -110,8 +110,8 @@ task-compose [command]
  | down       | Kill previous tasks processes.                              |
  | help       | Help about any command.                                     |
  | up         | Execute tasks according to the YAML configuration file.     |
- | version    | Show version number and build details of task-compose.      |
-| init       | Generate minimal task-compose.yaml file                     |
+ | version    | Show version number and build details of dgrkt.      |
+| init       | Generate minimal dgrkt.yaml file                     |
 
 
 ### Configuration File Reference
@@ -119,28 +119,28 @@ task-compose [command]
 The `tasks` key at the root of your YAML file contains a list of individual task definitions. Each task can have the following properties:
 
 
-| key                                                         | type               | description                                                                                                                                                      |
-|:------------------------------------------------------------|:-------------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `name`                                                      | string, required   | A unique identifier for the task.                                                                                                                                |
-| `base_dir`                                                  | string             | The working directory for the command. cmd.Dir will be set to this path. If not specified, the current working directory of task-compose will be used.           |
-| `executable`                                                | string, required   | The path to the executable command                                                                                                                               |e.g., node, java, ./my-app.|
-| `args`                                                      | []string           | A list of arguments to pass to the executable.                                                                                                                   |
-| `envs`                                                      | []string           | A list of environment variables to set for the command                                                                                                           |e.g., KEY=VALUE. These are merged with the parent process's environment variables.|
-| `depends_on`                                                | []string           | A list of task names that this task depends on. This task will only start after all its dependencies have successfully passed their health checks.               |
-| `healthcheck`                                               | object             | Defines how task-compose determines if a task is healthy.                                                                                                        |
-| `healthcheck.http`                                          | object             | Configures an HTTP GET health check.                                                                                                                             |
-| `healthcheck.http.url`                                      | string, required   | The URL to send the HTTP GET request to.                                                                                                                         |
-| `healthcheck.http.expect`                                   | object, optional   | Defines expected responses.If not set, a 2xx HTTP status code indicates health.                                                                                  |
-| `healthcheck.http.expect.json`                              | object             | Expects a JSON response.                                                                                                                                         |
-| `healthcheck.http.expect.json.jsonpath`                     | string, required   | A JSONPath expression to extract a value from the response.                                                                                                      |
-| `healthcheck.http.expect.json.value`                        | string, required   | The expected value                                                                                                                                               |as a string to match against the extracted JSONPath value.|
-| `healthcheck.command`                                       | object             | Configures a command-based health check.                                                                                                                         |
-| `healthcheck.command.scripts`                               | []string, required | A list where the first element is the command, and subsequent elements are its arguments. The command is considered healthy if it exits with a zero status code. |
-| `healthcheck.frequency`                                     | object             | Controls the timing of health checks.                                                                                                                            |
-| `healthcheck.frequency.interval`                            | duration string    | The time between consecutive health check attempts                                                                                                               |e.g., 5s, 1m.|
-| `healthcheck.frequency.timeout`                             | duration string    | The maximum time allowed for a single health check attempt                                                                                                       |e.g., 10s.|
-| `healthcheck.frequency.retries`                             | int                | The maximum number of consecutive failed health checks before the task is considered unhealthy.                                                                  |
-| `healthcheck.frequency.delay`                               | duration string    | The initial delay before the first health check attempt is made after a task starts                                                                              |e.g., 5s.|
+| key                                     | type               | description                                                                                                                                                      |
+|:----------------------------------------|:-------------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `name`                                  | string, required   | A unique identifier for the task.                                                                                                                                |
+| `base_dir`                              | string             | The working directory for the command. cmd.Dir will be set to this path. If not specified, the current working directory of dgrkt will be used.                  |
+| `executable`                            | string, required   | The path to the executable command                                                                                                                               |e.g., node, java, ./my-app.|
+| `args`                                  | []string           | A list of arguments to pass to the executable.                                                                                                                   |
+| `envs`                                  | []string           | A list of environment variables to set for the command                                                                                                           |e.g., KEY=VALUE. These are merged with the parent process's environment variables.|
+| `depends_on`                            | []string           | A list of task names that this task depends on. This task will only start after all its dependencies have successfully passed their health checks.               |
+| `healthcheck`                           | object             | Defines how dgrkt determines if a task is healthy.                                                                                                               |
+| `healthcheck.http`                      | object             | Configures an HTTP GET health check.                                                                                                                             |
+| `healthcheck.http.url`                  | string, required   | The URL to send the HTTP GET request to.                                                                                                                         |
+| `healthcheck.http.expect`               | object, optional   | Defines expected responses.If not set, a 2xx HTTP status code indicates health.                                                                                  |
+| `healthcheck.http.expect.json`          | object             | Expects a JSON response.                                                                                                                                         |
+| `healthcheck.http.expect.json.jsonpath` | string, required   | A JSONPath expression to extract a value from the response.                                                                                                      |
+| `healthcheck.http.expect.json.value`    | string, required   | The expected value                                                                                                                                               |as a string to match against the extracted JSONPath value.|
+| `healthcheck.command`                   | object             | Configures a command-based health check.                                                                                                                         |
+| `healthcheck.command.scripts`           | []string, required | A list where the first element is the command, and subsequent elements are its arguments. The command is considered healthy if it exits with a zero status code. |
+| `healthcheck.frequency`                 | object             | Controls the timing of health checks.                                                                                                                            |
+| `healthcheck.frequency.interval`        | duration string    | The time between consecutive health check attempts                                                                                                               |e.g., 5s, 1m.|
+| `healthcheck.frequency.timeout`         | duration string    | The maximum time allowed for a single health check attempt                                                                                                       |e.g., 10s.|
+| `healthcheck.frequency.retries`         | int                | The maximum number of consecutive failed health checks before the task is considered unhealthy.                                                                  |
+| `healthcheck.frequency.delay`           | duration string    | The initial delay before the first health check attempt is made after a task starts                                                                              |e.g., 5s.|
 
 ### Logging
 
@@ -152,7 +152,7 @@ Each log file will be named in the format `{task:name}-{date}.log`
 
 #### Example 1: Java Application Portable Launch Package
 
-Here's an example of how you might configure `task-compose` to start .jar file using java command
+Here's an example of how you might configure `dgrkt` to start .jar file using java command
 
 **Prerequisite**
 1. prepare your `myapp.jar` file.
@@ -165,11 +165,11 @@ new-dir/
     ├─ bin/
         ├─ java(.exe)
 ├─ myapp.jar
-├─ task-compose.yaml
-├─ (Optional) task-compose-portable(.exe)
+├─ dgrkt.yaml
+├─ (Optional) dgrkt-portable(.exe)
 ```
 
-**Example of task-compose.yaml**
+**Example of dgrkt.yaml**
 
 - With Portable Jre Java
     ```yaml
@@ -193,11 +193,11 @@ new-dir/
           - myapp.jar
     ```
 
-Double-click the task-compose portable executable or run `task-compose up` in your current directory's terminal.
+Double-click the dgrkt portable executable or run `dgrkt up` in your current directory's terminal.
 
 #### Example 2: Portable Elasticsearch and Kibana Set
 
-Here's an example of how you might configure `task-compose` to start Elasticsearch and Kibana, 
+Here's an example of how you might configure `dgrkt` to start Elasticsearch and Kibana, 
 with proper health checks and dependencies:
 
 **Prerequisite**
@@ -211,7 +211,7 @@ files structure:
 new-dir/
 ├─ elasticsearch/
 ├─ kibana/
-├─ task-compose.yaml
+├─ dgrkt.yaml
 ├─ kibana.yml
 ```
 
@@ -227,7 +227,7 @@ xpack:
     encryptionKey: "01234567890123456789012345678901" # only for demo
 ```
 
-**Example of task-compose.yaml**
+**Example of dgrkt.yaml**
 
 ```yaml
 tasks:
@@ -287,7 +287,7 @@ tasks:
       - kibana
 ```
 
-Double-click the task-compose portable executable or run `task-compose up` in your current directory's terminal.
+Double-click the dgrkt portable executable or run `dgrkt up` in your current directory's terminal.
 
 # Implementations
 

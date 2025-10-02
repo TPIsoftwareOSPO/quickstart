@@ -1,4 +1,4 @@
-module github.com/vulcanshen-tpi/task-compose
+module github.com/TPIsoftwareOSPO/digiRocket
 
 go 1.24.2
 

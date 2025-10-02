@@ -3,9 +3,9 @@ package cmd
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/vulcanshen-tpi/task-compose/app"
-	"github.com/vulcanshen-tpi/task-compose/config"
-	"github.com/vulcanshen-tpi/task-compose/utils"
+	"github.com/TPIsoftwareOSPO/digiRocket/app"
+	"github.com/TPIsoftwareOSPO/digiRocket/config"
+	"github.com/TPIsoftwareOSPO/digiRocket/utils"
 	"os"
 
 	"github.com/spf13/cobra"
@@ -14,7 +14,7 @@ import (
 var CheckCmd = &cobra.Command{
 	Use:   "check",
 	Short: "Confirm the correctness of the YAML content",
-	Long:  "Confirm the correctness of the YAML content: task-compose check",
+	Long:  "Confirm the correctness of the YAML content: dgrkt check",
 	Run: func(cmd *cobra.Command, args []string) {
 
 		if dir, err := os.Getwd(); err == nil {
@@ -48,7 +48,7 @@ var CheckCmd = &cobra.Command{
 
 func init() {
 	CheckCmd.PersistentFlags().BoolVar(&app.ShowDetail, "detail", false, "Show configuration details")
-	CheckCmd.PersistentFlags().StringVarP(&app.TasksComposeFile, "configfile", "f", "", "Specify the path to the configuration file, default is 'task-compose.yaml'")
+	CheckCmd.PersistentFlags().StringVarP(&app.TasksComposeFile, "configfile", "f", "", "Specify the path to the configuration file, default is 'dgrkt.yaml'")
 }
 
 func CheckConfig() error {

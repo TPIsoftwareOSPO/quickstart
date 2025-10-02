@@ -1,11 +1,11 @@
 package cmd
 
 import (
+	"github.com/TPIsoftwareOSPO/digiRocket/app"
+	"github.com/TPIsoftwareOSPO/digiRocket/config"
+	"github.com/TPIsoftwareOSPO/digiRocket/procedure"
+	"github.com/TPIsoftwareOSPO/digiRocket/utils"
 	"github.com/spf13/cobra"
-	"github.com/vulcanshen-tpi/task-compose/app"
-	"github.com/vulcanshen-tpi/task-compose/config"
-	"github.com/vulcanshen-tpi/task-compose/procedure"
-	"github.com/vulcanshen-tpi/task-compose/utils"
 	"os"
 	"os/signal"
 	"runtime"
@@ -17,7 +17,7 @@ var AppTasks map[string]*procedure.Task
 var UpCmd = &cobra.Command{
 	Use:   "up",
 	Short: "Execute tasks according to the YAML configuration file.",
-	Long:  "Execute tasks according to the YAML configuration file. with command: task-compose up",
+	Long:  "Execute tasks according to the YAML configuration file. with command: dgrkt up",
 	PreRun: func(cmd *cobra.Command, args []string) {
 		procedure.InitializeSpinnerAgent()
 		procedure.StartSpinnerAgent()
@@ -68,5 +68,5 @@ var UpCmd = &cobra.Command{
 
 func init() {
 	UpCmd.PersistentFlags().BoolVarP(&app.DetachMode, "detach", "d", false, "Launch tasks in the background")
-	UpCmd.PersistentFlags().StringVarP(&app.TasksComposeFile, "configfile", "f", "", "Specify the path to the configuration file, default is 'task-compose.yaml'")
+	UpCmd.PersistentFlags().StringVarP(&app.TasksComposeFile, "configfile", "f", "", "Specify the path to the configuration file, default is 'dgrkt.yaml'")
 }

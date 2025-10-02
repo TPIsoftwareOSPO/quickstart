@@ -1,8 +1,8 @@
 package procedure
 
 import (
+	"github.com/TPIsoftwareOSPO/digiRocket/app"
 	"github.com/chelnak/ysmrr"
-	"github.com/vulcanshen-tpi/task-compose/app"
 )
 
 type SpinnerAgent struct {

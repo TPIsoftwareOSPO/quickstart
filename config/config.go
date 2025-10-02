@@ -2,9 +2,9 @@ package config
 
 import (
 	"fmt"
+	"github.com/TPIsoftwareOSPO/digiRocket/app"
+	"github.com/TPIsoftwareOSPO/digiRocket/utils"
 	"github.com/spf13/viper"
-	"github.com/vulcanshen-tpi/task-compose/app"
-	"github.com/vulcanshen-tpi/task-compose/utils"
 	"os"
 	"path/filepath"
 )
@@ -58,12 +58,12 @@ type TaskConfig struct {
 	DependsOn   []string          `mapstructure:"depends_on"`
 }
 
-// LauncherConfig 定義了整個 task-compose.yaml 的根配置
+// LauncherConfig 定義了整個 dgrkt.yaml 的根配置
 type LauncherConfig struct {
 	Tasks []TaskConfig `mapstructure:"tasks"`
 }
 
-const defaultFileName = "task-compose"
+const defaultFileName = "dgrkt"
 
 var AppConfig LauncherConfig
 

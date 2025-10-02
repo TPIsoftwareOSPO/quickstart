@@ -2,7 +2,7 @@ package utils
 
 import (
 	"fmt"
-	"github.com/vulcanshen-tpi/task-compose/app"
+	"github.com/TPIsoftwareOSPO/digiRocket/app"
 	"log"
 	"os"
 	"strings"
@@ -17,7 +17,7 @@ type AppLogger struct {
 }
 
 var SharedAppLogger = AppLogger{
-	prefix:  "task-compose",
+	prefix:  "dgrkt",
 	color:   178,
 	console: log.New(os.Stdout, "", 0),
 }

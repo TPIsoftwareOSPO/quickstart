@@ -2,10 +2,10 @@ package cmd
 
 import (
 	"fmt"
+	"github.com/TPIsoftwareOSPO/digiRocket/app"
+	"github.com/TPIsoftwareOSPO/digiRocket/config"
+	"github.com/TPIsoftwareOSPO/digiRocket/utils"
 	"github.com/spf13/cobra"
-	"github.com/vulcanshen-tpi/task-compose/app"
-	"github.com/vulcanshen-tpi/task-compose/config"
-	"github.com/vulcanshen-tpi/task-compose/utils"
 	"gopkg.in/yaml.v3"
 	"os"
 	"path/filepath"
@@ -13,8 +13,8 @@ import (
 
 var InitCmd = &cobra.Command{
 	Use:   "init",
-	Short: "Generate minimal task-compose.yaml file",
-	Long:  "Generate minimal task-compose.yaml in the current directory with a basic 'echo' task.",
+	Short: "Generate minimal dgrkt.yaml file",
+	Long:  "Generate minimal dgrkt.yaml in the current directory with a basic 'echo' task.",
 	Run: func(cmd *cobra.Command, args []string) {
 
 		if dir, err := os.Getwd(); err == nil {
@@ -60,7 +60,7 @@ var InitCmd = &cobra.Command{
 		outputFile = filepath.Join(currentDir, outputFile)
 
 		if _, err := os.Stat(outputFile); err == nil {
-			utils.SharedAppLogger.Warn(fmt.Sprintf("'task-compose.yaml' already exists in '%s'. Aborting to prevent overwrite.\n", currentDir))
+			utils.SharedAppLogger.Warn(fmt.Sprintf("'dgrkt.yaml' already exists in '%s'. Aborting to prevent overwrite.\n", currentDir))
 			utils.SharedAppLogger.Warn("If you wish to overwrite, please delete the existing file first.")
 			return
 		} else if !os.IsNotExist(err) {
@@ -77,7 +77,7 @@ var InitCmd = &cobra.Command{
 		if err != nil {
 			utils.SharedAppLogger.Fatal(err)
 		}
-		utils.SharedAppLogger.Info("Successfully generated task-compose.yaml", "path", outputFile)
+		utils.SharedAppLogger.Info("Successfully generated dgrkt.yaml", "path", outputFile)
 	},
 }
 

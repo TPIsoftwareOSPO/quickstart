@@ -15,8 +15,8 @@ WORKDIR /app
 
 # 複製由 GoReleaser 編譯好的主要二進制文件。
 # GoReleaser 會在執行 Docker build 時，將這個二進制文件放在 Docker build context 的根目錄。
-# 根據你的 builds.binary: "task-compose" 設定，複製後的檔案名就是 "task-compose"。
-COPY task-compose .
+# 根據你的 builds.binary: "dgrkt" 設定，複製後的檔案名就是 "dgrkt"。
+COPY dgrkt .
 
 # 複製任何你在 .goreleaser.yaml 的 dockers.extra_files 中指定的額外文件。
 # 這些文件也會被 GoReleaser 放在 Docker build context 的根目錄。
@@ -24,9 +24,9 @@ COPY README.md .
 COPY LICENSE .
 
 # 設定容器啟動時的入口點。
-# 這表示當容器運行時，它會直接執行 /app/task-compose。
+# 這表示當容器運行時，它會直接執行 /app/dgrkt。
 # 使用 JSON 陣列格式是最佳實踐，避免 shell 處理。
-ENTRYPOINT ["/app/task-compose"]
+ENTRYPOINT ["/app/dgrkt"]
 
 CMD ["-h"]
 

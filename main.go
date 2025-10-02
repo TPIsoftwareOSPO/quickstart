@@ -4,9 +4,9 @@ Copyright © 2025 Vulcan Shen vulcan.shen@tpisoftware.com
 package main
 
 import (
-	"github.com/vulcanshen-tpi/task-compose/app"
-	"github.com/vulcanshen-tpi/task-compose/cmd"
-	"github.com/vulcanshen-tpi/task-compose/utils"
+	"github.com/TPIsoftwareOSPO/digiRocket/app"
+	"github.com/TPIsoftwareOSPO/digiRocket/cmd"
+	"github.com/TPIsoftwareOSPO/digiRocket/utils"
 	"os"
 	"path/filepath"
 )

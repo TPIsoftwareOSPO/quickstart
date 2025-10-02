@@ -1,6 +1,6 @@
 version: 2
 
-project_name: task-compose
+project_name: digiRocket
 
 env:
   - GO111MODULE=on
@@ -13,8 +13,8 @@ universal_binaries:
   - replace: false
 
 builds:
-  - id: "task-compose-cli-build"
-    binary: "task-compose"
+  - id: "dgrkt-cli-build"
+    binary: "dgrkt"
     env:
       - CGO_ENABLED=0
     goos:
@@ -36,8 +36,8 @@ builds:
       - -X {{.ModulePath}}/app.BuildDate={{.CommitDate}}
       - -X {{.ModulePath}}/app.Portable=false
     mod_timestamp: "{{ .CommitTimestamp }}"
-  - id: "task-compose-portable-build"
-    binary: "task-compose-portable"
+  - id: "dgrkt-portable-build"
+    binary: "dgrkt-portable"
     env:
       - CGO_ENABLED=0
     goos:
@@ -61,10 +61,10 @@ builds:
     mod_timestamp: "{{ .CommitTimestamp }}"
 
 archives:
-  - id: "task-compose-cli-archive"
+  - id: "dgrkt-cli-archive"
     formats: ['tar.gz']
     ids:
-      - task-compose-cli-build
+      - dgrkt-cli-build
     name_template: "{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}{{ if .Arm }}v{{ .Arm }}{{ end }}"
     format_overrides:
       - goos: windows
@@ -76,10 +76,10 @@ archives:
       group: root
       owner: root
       mtime: "{{ .CommitDate }}"
-  - id: "task-compose-portable-archive"
+  - id: "dgrkt-portable-archive"
     formats: ['tar.gz']
     ids:
-      - task-compose-portable-build
+      - dgrkt-portable-build
     name_template: "{{ .ProjectName }}-portable_{{ .Version }}_{{ .Os }}_{{ .Arch }}{{ if .Arm }}v{{ .Arm }}{{ end }}"
     format_overrides:
       - goos: windows
@@ -98,41 +98,39 @@ checksum:
 
 release:
   github:
-    owner: vulcanshen-tpi
-    name: task-compose
+    owner: TPIsoftwareOSPO
+    name: digiRocket
   name_template: "Release {{ .Tag }}"
 
 
 homebrew_casks:
-  - name: task-compose
+  - name: dgrkt
     repository:
-      owner: vulcanshen-tpi
+      owner: TPIsoftwareOSPO
       name: homebrew-tap
-    homepage: "https://github.com/vulcanshen-tpi/task-compose"
+    homepage: "https://github.com/TPIsoftwareOSPO/digiRocket"
     description: "Designed to orchestrate and execute a series of commands based on a declarative YAML configuration file."
-    license: "MIT"
     ids:
-      - task-compose-cli-archive
+      - dgrkt-cli-archive
 
 scoops:
   - repository:
-      owner: vulcanshen-tpi
+      owner: TPIsoftwareOSPO
       name: scoop-bucket
     directory: bucket
-    homepage: "https://github.com/vulcanshen-tpi/task-compose"
+    homepage: "https://github.com/TPIsoftwareOSPO/digiRocket"
     description: "A command orchestration tool for declarative task execution."
-    license: MIT
     ids:
-      - task-compose-cli-archive
+      - dgrkt-cli-archive
 
 dockers:
-  - id: "task-compose-docker-amd64"
+  - id: "dgrkt-docker-amd64"
     ids:
-      - task-compose-cli-build
+      - dgrkt-cli-build
     use: buildx
     goarch: amd64
     image_templates:
-      - "vulcantpisoft/task-compose:{{ .Version }}-amd64"
+      - "tpisoftwareopensource/dgrkt:{{ .Version }}-amd64"
     dockerfile: Dockerfile
     build_flag_templates:
       - "--pull"
@@ -146,11 +144,11 @@ dockers:
     extra_files:
       - README.md
       - LICENSE
-  - id: "task-compose-docker-arm64"
+  - id: "dgrkt-docker-arm64"
     use: buildx
     goarch: arm64
     image_templates:
-      - "vulcantpisoft/task-compose:{{ .Version }}-arm64"
+      - "tpisoftwareopensource/dgrkt:{{ .Version }}-arm64"
     dockerfile: Dockerfile
     build_flag_templates:
       - "--pull"
@@ -166,14 +164,14 @@ dockers:
       - LICENSE
 
 docker_manifests:
-  - name_template: "vulcantpisoft/task-compose:{{ .Version }}"
+  - name_template: "tpisoftwareopensource/dgrkt:{{ .Version }}"
     image_templates:
-      - "vulcantpisoft/task-compose:{{ .Version }}-amd64"
-      - "vulcantpisoft/task-compose:{{ .Version }}-arm64"
-  - name_template: "vulcantpisoft/task-compose:latest"
+      - "tpisoftwareopensource/dgrkt:{{ .Version }}-amd64"
+      - "tpisoftwareopensource/dgrkt:{{ .Version }}-arm64"
+  - name_template: "tpisoftwareopensource/dgrkt:latest"
     image_templates:
-      - "vulcantpisoft/task-compose:{{ .Version }}-amd64"
-      - "vulcantpisoft/task-compose:{{ .Version }}-arm64"
+      - "tpisoftwareopensource/dgrkt:{{ .Version }}-amd64"
+      - "tpisoftwareopensource/dgrkt:{{ .Version }}-arm64"
 
 
 snapshot:

@@ -114,10 +114,10 @@ fabric.properties
 .taskpid.yaml
 test-env/
 logs/
-task-compose
-task-compose*.exe
-task-compose-portable
-task-compose-portable*.exe
+dgrkt
+dgrkt*.exe
+dgrkt-portable
+dgrkt-portable*.exe
 # Added by goreleaser init:
 dist/
 .tmp/

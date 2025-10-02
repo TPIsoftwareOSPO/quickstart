@@ -1,9 +1,9 @@
 package cmd
 
 import (
-	"github.com/vulcanshen-tpi/task-compose/app"
-	"github.com/vulcanshen-tpi/task-compose/procedure"
-	"github.com/vulcanshen-tpi/task-compose/utils"
+	"github.com/TPIsoftwareOSPO/digiRocket/app"
+	"github.com/TPIsoftwareOSPO/digiRocket/procedure"
+	"github.com/TPIsoftwareOSPO/digiRocket/utils"
 	"os"
 	"path/filepath"
 	"sync"
@@ -33,7 +33,7 @@ func (p *ShutdownProcess) kill(wg *sync.WaitGroup) {
 var DownCmd = &cobra.Command{
 	Use:   "down",
 	Short: "Kill previous tasks processes",
-	Long:  "Kill previous tasks processes with command: task-compose down",
+	Long:  "Kill previous tasks processes with command: dgrkt down",
 	PreRun: func(cmd *cobra.Command, args []string) {
 		app.DetachMode = true
 		procedure.InitializeSpinnerAgent()
