@@ -184,10 +184,11 @@ report_sizes: true
   
 sboms:
   - id: dgrkt-sbom
+    disable: false
     ids:
-      - dgrkt-cli-build
+      - dgrkt-cli-archive
     documents:
-      - "${artifact}.spdx.json"
+      - "${artifact}.sbom.json"
 
 changelog:
   sort: asc
