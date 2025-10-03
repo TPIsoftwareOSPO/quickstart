@@ -181,9 +181,13 @@ gomod:
   proxy: true
 
 report_sizes: true
-
-#sboms:
-#  - artifacts: archive
+  
+sboms:
+  - id: dgrkt-sbom
+    ids:
+      - dgrkt-cli-build
+    documents:
+      - "${artifact}.spdx.json"
 
 changelog:
   sort: asc
