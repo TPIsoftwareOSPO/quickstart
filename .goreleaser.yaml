@@ -187,6 +187,7 @@ sboms:
     disable: false
     ids:
       - dgrkt-cli-archive
+      - dgrkt-portable-archive
     documents:
       - "${artifact}.sbom.json"
 
