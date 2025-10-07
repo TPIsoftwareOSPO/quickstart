@@ -117,6 +117,7 @@ scoops:
   - repository:
       owner: TPIsoftwareOSPO
       name: scoop-bucket
+    name: dgrkt
     directory: bucket
     homepage: "https://github.com/TPIsoftwareOSPO/digiRocket"
     description: "A command orchestration tool for declarative task execution."
