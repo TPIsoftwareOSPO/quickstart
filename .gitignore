@@ -114,10 +114,10 @@ fabric.properties
 .taskpid.yaml
 test-env/
 logs/
-dgrkt
-dgrkt*.exe
-dgrkt-portable
-dgrkt-portable*.exe
+quickstart
+quickstart*.exe
+quickstart-portable
+quickstart-portable*.exe
 # Added by goreleaser init:
 dist/
 .tmp/

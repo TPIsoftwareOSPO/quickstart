@@ -17,7 +17,7 @@ var AppTasks map[string]*procedure.Task
 var UpCmd = &cobra.Command{
 	Use:   "up",
 	Short: "Execute tasks according to the YAML configuration file.",
-	Long:  "Execute tasks according to the YAML configuration file. with command: dgrkt up",
+	Long:  "Execute tasks according to the YAML configuration file. with command: quickstart up",
 	PreRun: func(cmd *cobra.Command, args []string) {
 		procedure.InitializeSpinnerAgent()
 		procedure.StartSpinnerAgent()
@@ -68,5 +68,5 @@ var UpCmd = &cobra.Command{
 
 func init() {
 	UpCmd.PersistentFlags().BoolVarP(&app.DetachMode, "detach", "d", false, "Launch tasks in the background")
-	UpCmd.PersistentFlags().StringVarP(&app.TasksComposeFile, "configfile", "f", "", "Specify the path to the configuration file, default is 'dgrkt.yaml'")
+	UpCmd.PersistentFlags().StringVarP(&app.TasksComposeFile, "configfile", "f", "", "Specify the path to the configuration file, default is 'quickstart.yaml'")
 }

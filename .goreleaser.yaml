@@ -13,8 +13,8 @@ universal_binaries:
   - replace: false
 
 builds:
-  - id: "dgrkt-cli-build"
-    binary: "dgrkt"
+  - id: "quickstart-cli-build"
+    binary: "quickstart"
     env:
       - CGO_ENABLED=0
     goos:
@@ -36,8 +36,8 @@ builds:
       - -X {{.ModulePath}}/app.BuildDate={{.CommitDate}}
       - -X {{.ModulePath}}/app.Portable=false
     mod_timestamp: "{{ .CommitTimestamp }}"
-  - id: "dgrkt-portable-build"
-    binary: "dgrkt-portable"
+  - id: "quickstart-portable-build"
+    binary: "quickstart-portable"
     env:
       - CGO_ENABLED=0
     goos:
@@ -61,10 +61,10 @@ builds:
     mod_timestamp: "{{ .CommitTimestamp }}"
 
 archives:
-  - id: "dgrkt-cli-archive"
+  - id: "quickstart-cli-archive"
     formats: ['tar.gz']
     ids:
-      - dgrkt-cli-build
+      - quickstart-cli-build
     name_template: "{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}{{ if .Arm }}v{{ .Arm }}{{ end }}"
     format_overrides:
       - goos: windows
@@ -76,10 +76,10 @@ archives:
       group: root
       owner: root
       mtime: "{{ .CommitDate }}"
-  - id: "dgrkt-portable-archive"
+  - id: "quickstart-portable-archive"
     formats: ['tar.gz']
     ids:
-      - dgrkt-portable-build
+      - quickstart-portable-build
     name_template: "{{ .ProjectName }}-portable_{{ .Version }}_{{ .Os }}_{{ .Arch }}{{ if .Arm }}v{{ .Arm }}{{ end }}"
     format_overrides:
       - goos: windows
@@ -104,34 +104,34 @@ release:
 
 
 homebrew_casks:
-  - name: dgrkt
+  - name: quickstart
     repository:
       owner: TPIsoftwareOSPO
       name: homebrew-tap
     homepage: "https://github.com/TPIsoftwareOSPO/quickstart"
     description: "Designed to orchestrate and execute a series of commands based on a declarative YAML configuration file."
     ids:
-      - dgrkt-cli-archive
+      - quickstart-cli-archive
 
 scoops:
   - repository:
       owner: TPIsoftwareOSPO
       name: scoop-bucket
-    name: dgrkt
+    name: quickstart
     directory: bucket
     homepage: "https://github.com/TPIsoftwareOSPO/quickstart"
     description: "A command orchestration tool for declarative task execution."
     ids:
-      - dgrkt-cli-archive
+      - quickstart-cli-archive
 
 dockers:
-  - id: "dgrkt-docker-amd64"
+  - id: "quickstart-docker-amd64"
     ids:
-      - dgrkt-cli-build
+      - quickstart-cli-build
     use: buildx
     goarch: amd64
     image_templates:
-      - "tpisoftwareopensource/dgrkt:{{ .Version }}-amd64"
+      - "tpisoftwareopensource/quickstart:{{ .Version }}-amd64"
     dockerfile: Dockerfile
     build_flag_templates:
       - "--pull"
@@ -145,11 +145,11 @@ dockers:
     extra_files:
       - README.md
       - LICENSE
-  - id: "dgrkt-docker-arm64"
+  - id: "quickstart-docker-arm64"
     use: buildx
     goarch: arm64
     image_templates:
-      - "tpisoftwareopensource/dgrkt:{{ .Version }}-arm64"
+      - "tpisoftwareopensource/quickstart:{{ .Version }}-arm64"
     dockerfile: Dockerfile
     build_flag_templates:
       - "--pull"
@@ -165,14 +165,14 @@ dockers:
       - LICENSE
 
 docker_manifests:
-  - name_template: "tpisoftwareopensource/dgrkt:{{ .Version }}"
+  - name_template: "tpisoftwareopensource/quickstart:{{ .Version }}"
     image_templates:
-      - "tpisoftwareopensource/dgrkt:{{ .Version }}-amd64"
-      - "tpisoftwareopensource/dgrkt:{{ .Version }}-arm64"
-  - name_template: "tpisoftwareopensource/dgrkt:latest"
+      - "tpisoftwareopensource/quickstart:{{ .Version }}-amd64"
+      - "tpisoftwareopensource/quickstart:{{ .Version }}-arm64"
+  - name_template: "tpisoftwareopensource/quickstart:latest"
     image_templates:
-      - "tpisoftwareopensource/dgrkt:{{ .Version }}-amd64"
-      - "tpisoftwareopensource/dgrkt:{{ .Version }}-arm64"
+      - "tpisoftwareopensource/quickstart:{{ .Version }}-amd64"
+      - "tpisoftwareopensource/quickstart:{{ .Version }}-arm64"
 
 
 snapshot:
@@ -184,11 +184,11 @@ gomod:
 report_sizes: true
   
 sboms:
-  - id: dgrkt-sbom
+  - id: quickstart-sbom
     disable: false
     ids:
-      - dgrkt-cli-archive
-      - dgrkt-portable-archive
+      - quickstart-cli-archive
+      - quickstart-portable-archive
     documents:
       - "${artifact}.sbom.json"
 

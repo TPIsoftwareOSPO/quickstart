@@ -9,7 +9,7 @@ import (
 
 var VersionCmd = &cobra.Command{
 	Use:   "version",
-	Short: "Show version number and build details of dgrkt",
+	Short: "Show version number and build details of quickstart",
 	Run: func(cmd *cobra.Command, args []string) {
 
 		var info = fmt.Sprintf("[%s] (Build: %s Commit: %s Portable: %s)",

@@ -1,4 +1,4 @@
-APP_NAME := dgrkt
+APP_NAME := quickstart
 GO_MODULE_PATH := $(shell go list -m)
 
 CLI_LDFLAGS := -X '${GO_MODULE_PATH}/app.Version=$$(git describe --tags)' \

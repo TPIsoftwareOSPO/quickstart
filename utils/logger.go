@@ -17,7 +17,7 @@ type AppLogger struct {
 }
 
 var SharedAppLogger = AppLogger{
-	prefix:  "dgrkt",
+	prefix:  "quickstart",
 	color:   178,
 	console: log.New(os.Stdout, "", 0),
 }

@@ -14,7 +14,7 @@ import (
 var CheckCmd = &cobra.Command{
 	Use:   "check",
 	Short: "Confirm the correctness of the YAML content",
-	Long:  "Confirm the correctness of the YAML content: dgrkt check",
+	Long:  "Confirm the correctness of the YAML content: quickstart check",
 	Run: func(cmd *cobra.Command, args []string) {
 
 		if dir, err := os.Getwd(); err == nil {
@@ -48,7 +48,7 @@ var CheckCmd = &cobra.Command{
 
 func init() {
 	CheckCmd.PersistentFlags().BoolVar(&app.ShowDetail, "detail", false, "Show configuration details")
-	CheckCmd.PersistentFlags().StringVarP(&app.TasksComposeFile, "configfile", "f", "", "Specify the path to the configuration file, default is 'dgrkt.yaml'")
+	CheckCmd.PersistentFlags().StringVarP(&app.TasksComposeFile, "configfile", "f", "", "Specify the path to the configuration file, default is 'quickstart.yaml'")
 }
 
 func CheckConfig() error {

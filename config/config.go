@@ -58,12 +58,12 @@ type TaskConfig struct {
 	DependsOn   []string          `mapstructure:"depends_on"`
 }
 
-// LauncherConfig 定義了整個 dgrkt.yaml 的根配置
+// LauncherConfig 定義了整個 quickstart.yaml 的根配置
 type LauncherConfig struct {
 	Tasks []TaskConfig `mapstructure:"tasks"`
 }
 
-const defaultFileName = "dgrkt"
+const defaultFileName = "quickstart"
 
 var AppConfig LauncherConfig
 

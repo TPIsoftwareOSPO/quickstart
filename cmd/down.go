@@ -33,7 +33,7 @@ func (p *ShutdownProcess) kill(wg *sync.WaitGroup) {
 var DownCmd = &cobra.Command{
 	Use:   "down",
 	Short: "Kill previous tasks processes",
-	Long:  "Kill previous tasks processes with command: dgrkt down",
+	Long:  "Kill previous tasks processes with command: quickstart down",
 	PreRun: func(cmd *cobra.Command, args []string) {
 		app.DetachMode = true
 		procedure.InitializeSpinnerAgent()

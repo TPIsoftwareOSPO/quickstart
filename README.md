@@ -1,8 +1,8 @@
-# quickstart(dgrkt)
+# quickstart(quickstart)
 
-`dgrkt` is a convenient command-line utility built with Go and Cobra. It's designed to orchestrate and execute a series of commands based on a declarative YAML configuration file, similar to how container orchestrators manage services. This tool simplifies the management of complex multi-command setups, making it ideal for local development environments, testing suites, or task automation.
+`quickstart` is a convenient command-line utility built with Go and Cobra. It's designed to orchestrate and execute a series of commands based on a declarative YAML configuration file, similar to how container orchestrators manage services. This tool simplifies the management of complex multi-command setups, making it ideal for local development environments, testing suites, or task automation.
 
-With `dgrkt`, you define your tasks, their execution parameters, and their dependencies, allowing you to bring up and manage an entire set of related processes with a single command. It includes robust health check capabilities, ensuring that each task is healthy before dependent tasks are started.
+With `quickstart`, you define your tasks, their execution parameters, and their dependencies, allowing you to bring up and manage an entire set of related processes with a single command. It includes robust health check capabilities, ensuring that each task is healthy before dependent tasks are started.
 
 ### Features
 
@@ -32,10 +32,10 @@ you'll currently need to manually bypass system security blocks when running the
 - [homebrew installation](https://brew.sh/)
 
 ```shell
-brew install --cask TPIsoftwareOSPO/tap/dgrkt
+brew install --cask TPIsoftwareOSPO/tap/quickstart
 
 # macos (as "Important Note!" mention above)
-xattr -dr com.apple.quarantine $(which dgrkt)
+xattr -dr com.apple.quarantine $(which quickstart)
 ```
 
 #### Scoop (windows)
@@ -45,20 +45,20 @@ xattr -dr com.apple.quarantine $(which dgrkt)
 ```shell
 # add scoop tap
 scoop bucket add TPIsoftwareOSPO https://github.com/TPIsoftwareOSPO/scoop-bucket.git
-# install dgrkt
-scoop install dgrkt
+# install quickstart
+scoop install quickstart
 ```
 
 ### Portable Executable
 
 Download the compressed file that matches your system from [release](https://github.com/TPIsoftwareOSPO/quickstart/releases).
-The filename prefix will be `dgrkt-portable_`.
+The filename prefix will be `quickstart-portable_`.
 
-To run the portable executable, it must be in the same directory with the `dgrkt.yaml` file.
+To run the portable executable, it must be in the same directory with the `quickstart.yaml` file.
 
 ### Basics
 
-`dgrkt.yaml`
+`quickstart.yaml`
 
 ```yaml
 tasks:
@@ -72,12 +72,12 @@ tasks:
 To execute tasks defined in your configuration file:
 
 ```bash
-dgrkt up
+quickstart up
 ```
 
 output:
 ```shell
-dgrkt|Using config file: ...(ellipsis)/dgrkt.yaml
+quickstart|Using config file: ...(ellipsis)/quickstart.yaml
 echo|hello world
 echo|Completed
 ```
@@ -85,17 +85,17 @@ echo|Completed
 ### Using Docker
 
 ```shell
-docker run --rm -v ./dgrkt.yaml:/app/dgrkt.yaml tpisoftwareopensource/dgrkt up
+docker run --rm -v ./quickstart.yaml:/app/quickstart.yaml tpisoftwareopensource/quickstart up
 ```
 
 ### Command Line Interface (CLI)
 
-`dgrkt` provides a straightforward command-line interface.
+`quickstart` provides a straightforward command-line interface.
 
 **Usage:**
 
 ```bash
-dgrkt [command]
+quickstart [command]
 ```
 
 **Available Commands:**
@@ -107,8 +107,8 @@ dgrkt [command]
  | down       | Kill previous tasks processes.                              |
  | help       | Help about any command.                                     |
  | up         | Execute tasks according to the YAML configuration file.     |
- | version    | Show version number and build details of dgrkt.             |
-| init       | Generate minimal dgrkt.yaml file                            |
+ | version    | Show version number and build details of quickstart.             |
+| init       | Generate minimal quickstart.yaml file                            |
 
 
 ### Configuration File Reference
@@ -119,12 +119,12 @@ The `tasks` key at the root of your YAML file contains a list of individual task
 | key                                     | type               | description                                                                                                                                                      |
 |:----------------------------------------|:-------------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `name`                                  | string, required   | A unique identifier for the task.                                                                                                                                |
-| `base_dir`                              | string             | The working directory for the command. cmd.Dir will be set to this path. If not specified, the current working directory of dgrkt will be used.                  |
+| `base_dir`                              | string             | The working directory for the command. cmd.Dir will be set to this path. If not specified, the current working directory of quickstart will be used.                  |
 | `executable`                            | string, required   | The path to the executable command                                                                                                                               |e.g., node, java, ./my-app.|
 | `args`                                  | []string           | A list of arguments to pass to the executable.                                                                                                                   |
 | `envs`                                  | []string           | A list of environment variables to set for the command                                                                                                           |e.g., KEY=VALUE. These are merged with the parent process's environment variables.|
 | `depends_on`                            | []string           | A list of task names that this task depends on. This task will only start after all its dependencies have successfully passed their health checks.               |
-| `healthcheck`                           | object             | Defines how dgrkt determines if a task is healthy.                                                                                                               |
+| `healthcheck`                           | object             | Defines how quickstart determines if a task is healthy.                                                                                                               |
 | `healthcheck.http`                      | object             | Configures an HTTP GET health check.                                                                                                                             |
 | `healthcheck.http.url`                  | string, required   | The URL to send the HTTP GET request to.                                                                                                                         |
 | `healthcheck.http.expect`               | object, optional   | Defines expected responses.If not set, a 2xx HTTP status code indicates health.                                                                                  |
@@ -149,7 +149,7 @@ Each log file will be named in the format `{task:name}-{date}.log`
 
 #### Example 1: Java Application Portable Launch Package
 
-Here's an example of how you might configure `dgrkt` to start .jar file using java command
+Here's an example of how you might configure `quickstart` to start .jar file using java command
 
 **Prerequisite**
 1. prepare your `myapp.jar` file.
@@ -162,11 +162,11 @@ new-dir/
     ├─ bin/
         ├─ java(.exe)
 ├─ myapp.jar
-├─ dgrkt.yaml
-├─ (Optional) dgrkt-portable(.exe)
+├─ quickstart.yaml
+├─ (Optional) quickstart-portable(.exe)
 ```
 
-**Example of dgrkt.yaml**
+**Example of quickstart.yaml**
 
 - With Portable Jre Java
     ```yaml
@@ -190,11 +190,11 @@ new-dir/
           - myapp.jar
     ```
 
-Double-click the dgrkt portable executable or run `dgrkt up` in your current directory's terminal.
+Double-click the quickstart portable executable or run `quickstart up` in your current directory's terminal.
 
 #### Example 2: Portable Elasticsearch and Kibana Set
 
-Here's an example of how you might configure `dgrkt` to start Elasticsearch and Kibana, 
+Here's an example of how you might configure `quickstart` to start Elasticsearch and Kibana, 
 with proper health checks and dependencies:
 
 **Prerequisite**
@@ -208,7 +208,7 @@ files structure:
 new-dir/
 ├─ elasticsearch/
 ├─ kibana/
-├─ dgrkt.yaml
+├─ quickstart.yaml
 ├─ kibana.yml
 ```
 
@@ -224,7 +224,7 @@ xpack:
     encryptionKey: "01234567890123456789012345678901" # only for demo
 ```
 
-**Example of dgrkt.yaml**
+**Example of quickstart.yaml**
 
 ```yaml
 tasks:
@@ -284,7 +284,7 @@ tasks:
       - kibana
 ```
 
-Double-click the dgrkt portable executable or run `dgrkt up` in your current directory's terminal.
+Double-click the quickstart portable executable or run `quickstart up` in your current directory's terminal.
 
 # Implementations
 
