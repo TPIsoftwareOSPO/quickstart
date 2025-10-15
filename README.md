@@ -1,4 +1,4 @@
-# quickstart(quickstart)
+# quickstart
 
 `quickstart` is a convenient command-line utility built with Go and Cobra. It's designed to orchestrate and execute a series of commands based on a declarative YAML configuration file, similar to how container orchestrators manage services. This tool simplifies the management of complex multi-command setups, making it ideal for local development environments, testing suites, or task automation.
 
