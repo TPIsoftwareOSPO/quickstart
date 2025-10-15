@@ -15,10 +15,6 @@ build:
 	@echo "Building $(APP_NAME) with LDFLAGS: $(LDFLAGS)"
 	go build -ldflags="$(CLI_LDFLAGS)" -o $(APP_NAME)
 	go build -ldflags="$(GUI_LDFLAGS)" -o $(APP_NAME)-portable
-	GOOS=windows GOARCH=arm64 go build -ldflags="$(CLI_LDFLAGS)" -o $(APP_NAME)-arm64.exe
-	GOOS=windows GOARCH=arm64 go build -ldflags="$(GUI_LDFLAGS)" -o $(APP_NAME)-portable-arm64.exe
-	GOOS=windows GOARCH=amd64 go build -ldflags="$(CLI_LDFLAGS)" -o $(APP_NAME)-amd64.exe
-	GOOS=windows GOARCH=amd64 go build -ldflags="$(GUI_LDFLAGS)" -o $(APP_NAME)-portable-amd64.exe
 
 release:
 	goreleaser release --clean
