@@ -4,9 +4,9 @@ Copyright © 2025 Vulcan Shen vulcan.shen@tpisoftware.com
 package main
 
 import (
-	"github.com/TPIsoftwareOSPO/digiRocket/app"
-	"github.com/TPIsoftwareOSPO/digiRocket/cmd"
-	"github.com/TPIsoftwareOSPO/digiRocket/utils"
+	"github.com/TPIsoftwareOSPO/quickstart/app"
+	"github.com/TPIsoftwareOSPO/quickstart/cmd"
+	"github.com/TPIsoftwareOSPO/quickstart/utils"
 	"os"
 	"path/filepath"
 )

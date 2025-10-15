@@ -1,6 +1,6 @@
 version: 2
 
-project_name: digiRocket
+project_name: quickstart
 
 env:
   - GO111MODULE=on
@@ -99,7 +99,7 @@ checksum:
 release:
   github:
     owner: TPIsoftwareOSPO
-    name: digiRocket
+    name: quickstart
   name_template: "Release {{ .Tag }}"
 
 
@@ -108,7 +108,7 @@ homebrew_casks:
     repository:
       owner: TPIsoftwareOSPO
       name: homebrew-tap
-    homepage: "https://github.com/TPIsoftwareOSPO/digiRocket"
+    homepage: "https://github.com/TPIsoftwareOSPO/quickstart"
     description: "Designed to orchestrate and execute a series of commands based on a declarative YAML configuration file."
     ids:
       - dgrkt-cli-archive
@@ -119,7 +119,7 @@ scoops:
       name: scoop-bucket
     name: dgrkt
     directory: bucket
-    homepage: "https://github.com/TPIsoftwareOSPO/digiRocket"
+    homepage: "https://github.com/TPIsoftwareOSPO/quickstart"
     description: "A command orchestration tool for declarative task execution."
     ids:
       - dgrkt-cli-archive

@@ -1,10 +1,10 @@
 package cmd
 
 import (
-	"github.com/TPIsoftwareOSPO/digiRocket/app"
-	"github.com/TPIsoftwareOSPO/digiRocket/config"
-	"github.com/TPIsoftwareOSPO/digiRocket/procedure"
-	"github.com/TPIsoftwareOSPO/digiRocket/utils"
+	"github.com/TPIsoftwareOSPO/quickstart/app"
+	"github.com/TPIsoftwareOSPO/quickstart/config"
+	"github.com/TPIsoftwareOSPO/quickstart/procedure"
+	"github.com/TPIsoftwareOSPO/quickstart/utils"
 	"github.com/spf13/cobra"
 	"os"
 	"os/signal"

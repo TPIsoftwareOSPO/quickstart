@@ -1,7 +1,7 @@
 package procedure
 
 import (
-	"github.com/TPIsoftwareOSPO/digiRocket/app"
+	"github.com/TPIsoftwareOSPO/quickstart/app"
 	"github.com/chelnak/ysmrr"
 )
 

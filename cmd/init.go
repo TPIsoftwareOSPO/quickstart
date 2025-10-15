@@ -2,9 +2,9 @@ package cmd
 
 import (
 	"fmt"
-	"github.com/TPIsoftwareOSPO/digiRocket/app"
-	"github.com/TPIsoftwareOSPO/digiRocket/config"
-	"github.com/TPIsoftwareOSPO/digiRocket/utils"
+	"github.com/TPIsoftwareOSPO/quickstart/app"
+	"github.com/TPIsoftwareOSPO/quickstart/config"
+	"github.com/TPIsoftwareOSPO/quickstart/utils"
 	"github.com/spf13/cobra"
 	"gopkg.in/yaml.v3"
 	"os"

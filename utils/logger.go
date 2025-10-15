@@ -2,7 +2,7 @@ package utils
 
 import (
 	"fmt"
-	"github.com/TPIsoftwareOSPO/digiRocket/app"
+	"github.com/TPIsoftwareOSPO/quickstart/app"
 	"log"
 	"os"
 	"strings"
