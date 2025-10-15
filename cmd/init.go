@@ -9,6 +9,7 @@ import (
 	"gopkg.in/yaml.v3"
 	"os"
 	"path/filepath"
+	"runtime"
 )
 
 var InitCmd = &cobra.Command{
@@ -23,26 +24,36 @@ var InitCmd = &cobra.Command{
 		}
 
 		var echoConfig map[string]any
+		var configOs = runtime.GOOS
+
+		var windowsConfig = map[string]any{
+			"tasks": []map[string]any{
+				{
+					"name":       "echo",
+					"executable": "cmd.exe",
+					"args":       []string{"/C", "echo hello world"},
+				},
+			},
+		}
+
+		var linuxConfig = map[string]any{
+			"tasks": []map[string]any{
+				{
+					"name":       "echo",
+					"executable": "echo",
+					"args":       []string{"hello", "world"},
+				},
+			},
+		}
 
 		if app.InitCmdIsWindows {
-			echoConfig = map[string]any{
-				"tasks": []map[string]any{
-					{
-						"name":       "echo",
-						"executable": "cmd.exe",
-						"args":       []string{"/C", "echo hello world"},
-					},
-				},
-			}
+			echoConfig = windowsConfig
+			configOs = "windows"
 		} else {
-			echoConfig = map[string]any{
-				"tasks": []map[string]any{
-					{
-						"name":       "echo",
-						"executable": "echo",
-						"args":       []string{"hello", "world"},
-					},
-				},
+			if runtime.GOOS == "windows" {
+				echoConfig = windowsConfig
+			} else {
+				echoConfig = linuxConfig
 			}
 		}
 
@@ -77,7 +88,9 @@ var InitCmd = &cobra.Command{
 		if err != nil {
 			utils.SharedAppLogger.Fatal(err)
 		}
-		utils.SharedAppLogger.Info("Successfully generated quickstart.yaml", "path", outputFile)
+		utils.SharedAppLogger.Info("os:", runtime.GOOS)
+		utils.SharedAppLogger.Info("config file os type:", configOs)
+		utils.SharedAppLogger.Info("Successfully generated quickstart.yaml at path:", outputFile)
 	},
 }
 
