@@ -26,8 +26,7 @@ Perfect for setting up **local dev environments**, running **integration tests**
 
 - Spin up **local environments** with multiple services (databases, APIs, message queues).  
 - Run **integration tests** that depend on multiple running services.  
-- Automate **CI/CD workflows** with predictable, declarative orchestration.  
-- Replace fragile **bash scripts or Makefiles** with structured YAML.  
+- Automate **CI/CD workflows** with predictable, declarative orchestration. 
 
 
 ---
@@ -36,9 +35,7 @@ Perfect for setting up **local dev environments**, running **integration tests**
 
 * 🧾 **Declarative YAML config** – Define tasks, dependencies, and health checks cleanly.
 * ⚙️ **Process orchestration** – Manage concurrent or sequential command execution.
-* ❤️ **Built-in health checks** – Validate task readiness before proceeding.
-* 🌐 **HTTP & JSON path validation** – Verify responses and extract data easily.
-* 💻 **Command-based checks** – Use shell commands to test custom health states.
+* ❤️ **Built-in health checks** – Validate task completion before proceeding.
 * 🧠 **Dependency control** – Define startup order via `depends_on`.
 * 💡 **Flexible execution** – Customize `base_dir`, `args`, and `envs` per task.
 
@@ -48,15 +45,15 @@ Perfect for setting up **local dev environments**, running **integration tests**
 
 | Tool               | Key Difference                                              |
 | ------------------ | ----------------------------------------------------------- |
-| **Shell Scripts**  | YAML offers structure, dependency logic, and health checks. |
-| **Makefiles**      | Designed for orchestration, not just builds.                |
-| **Docker Compose** | Works with any executables — not just containers.           |
+| **Scripts**  | YAML offers structure, dependency logic, and health checks. |
+| **Makefiles**      | With relative tasks and customized execution check.  |
+| **Docker Compose** | Works with any executables, not just containers.           |
 
 ---
 
 ### 🏁 Summary
 
-**quickstart** brings structure, reliability, and observability to your automation workflows —
+**quickstart** brings structure, reliability, portabilty and observability to your automation workflows —
 helping you focus more on building and less on managing scripts.
 
 
